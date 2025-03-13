@@ -22,7 +22,8 @@ const Counter: React.FC<CounterProps> = ({ useMockData = false }) => {
     if (!isConnected || !characteristic) return;
 
     const handleCharacteristicValueChanged = (event: Event) => {
-      const target = event.target as BluetoothRemoteGATTCharacteristic;
+      // Type assertion to fix the TypeScript error
+      const target = event.target as unknown as BluetoothRemoteGATTCharacteristic;
       const dataView = target.value;
       if (!dataView) return;
       
